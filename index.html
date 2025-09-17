@@ -1,0 +1,487 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Nainaa 🌙✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #ff6aa7;
+    --soft: #ffddee;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Poppins, system-ui;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* moving star field */
+  .stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat center;
+    background-size: auto;
+    animation: pan 240s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.05));
+  }
+  @keyframes pan {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -8000px 4000px;
+    }
+  }
+  
+  /* moon */
+  .moon {
+    position: fixed;
+    right: 6%;
+    top: 40px;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #ddd, #bdbdbd 60%, rgba(0, 0, 0, 0.15));
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.12), inset -10px -6px 20px rgba(0, 0, 0, 0.12);
+    opacity: 0.98;
+  }
+  
+  header {
+    position: relative;
+    z-index: 2;
+    padding: 56px 20px 20px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .headline {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    color: var(--soft);
+    text-shadow: 0 0 10px rgba(168, 91, 255, 0.25), 0 0 22px rgba(255, 106, 167, 0.08);
+    margin: 0;
+  }
+  .sub {
+    margin-top: 6px;
+    color: #f3d7e4;
+    opacity: 0.9;
+    font-size: 14px;
+  }
+  
+  /* container for disc + lyrics */
+  .center-row {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* spinning disc */
+  .disc-wrap {
+    width: 260px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .disc {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: center/cover no-repeat url('https://www.transparenttextures.com/patterns/stardust.png');
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.06) inset;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s linear;
+  }
+  .disc::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #f0f0f0 40%, rgba(255, 255, 255, 0.06) 100%);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  }
+  .spin-on {
+    animation: spin 12s linear infinite;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* play/pause button */
+  .controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+  }
+  .btn {
+    background: linear-gradient(90deg, var(--accent), #a85bff);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(168, 91, 255, 0.12);
+  }
+  
+  /* lyrics box */
+  .lyrics-box {
+    width: 420px;
+    max-width: 84vw;
+    min-height: 220px;
+    padding: 18px 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.16));
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    color: var(--soft);
+    font-family: 'Great Vibes';
+    font-size: 20px;
+    line-height: 1.6;
+    position: relative;
+    overflow: hidden;
+  }
+  .lyrics-line {
+    opacity: 0;
+    transform: translateY(18px) scale(.99);
+    display: block;
+    transition: all 500ms cubic-bezier(.2, .9, .2, 1);
+    margin: 8px 0;
+  }
+  .lyrics-line.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    text-shadow: 0 0 6px rgba(255, 200, 220, 0.12);
+  }
+  
+  /* tempo slider */
+  .tempo {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #f4dbe6;
+  }
+  input[type=range] {
+    width: 160px;
+  }
+  
+  /* gallery */
+  .gallery {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 34px auto;
+    z-index: 2;
+    position: relative;
+  }
+  .gallery img {
+    width: 160px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.6);
+    transition: transform .25s;
+  }
+  .gallery img:hover {
+    transform: scale(1.06);
+  }
+  
+  /* note area */
+  .note-wrap {
+    max-width: 920px;
+    margin: 48px auto;
+    padding: 36px;
+    border-radius: 16px;
+    position: relative;
+    z-index: 2;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png') center/cover no-repeat;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    color: #fff;
+  }
+  .note-inner {
+    background: url('https://i.ibb.co/NgYjvq1T/c9441d976e858f74b128bbbe34def653.jpg') center/cover no-repeat;
+    padding: 22px;
+    border-radius: 10px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
+    line-height: 1.7;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 400px;
+  }
+  .note-inner:focus {
+    outline: none;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.06)
+  }
+  .note-inner .message-text {
+    max-width: 80%;
+  }
+  .note-inner .signature {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-style: italic;
+  }
+
+  @media (max-width: 880px) {
+    .center-row {
+      flex-direction: column;
+      gap: 18px;
+    }
+    .lyrics-box {
+      width: 92%;
+      min-height: 160px;
+      font-size: 18px;
+    }
+    .disc-wrap {
+      width: 220px;
+      height: 220px;
+    }
+    .gallery img {
+      width: 140px;
+      height: 190px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <header>
+    <h1 class="headline">Happy Birthday, Nainaa</h1>
+    <div class="sub">Tonight under the moonlight and twinkling stars, the whole universe celebrates you. You are the brightest star in my sky, the sweetest melody in my heart, and the reason life feels magical. May your birthday bring endless love, laughter, and blessings. ✨</div>
+  </header>
+  <audio id="player" preload="auto" autoplay loop>
+    <source src="https://files.catbox.moe/gubb69.mp3" type="audio/mp3">
+  </audio>
+  <main style="padding:10px 16px 40px;">
+    <section class="center-row">
+      <div style="text-align:center;">
+        <div class="disc-wrap">
+          <div id="disc" class="disc spin-on" title="Music disc (click to pause/play)"></div>
+        </div>
+        <div class="controls" style="justify-content:center">
+          <button id="playBtn" class="btn">Pause</button>
+          <div class="tempo">
+            <label style="opacity:0.9">Tempo</label>
+            <input id="tempo" type="range" min="500" max="4000" step="100" value="2000">
+            <small style="opacity:0.9">speed</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="lyrics-box">
+        <div id="lyricsContainer"></div>
+      </div>
+    </section>
+
+    <section class="gallery" aria-label="Photos of Nainaa">
+      <img src="https://i.ibb.co/tpxyG7MB/IMG-20250917-025203-339.jpg" alt="Nainaa photo 1">
+      <img src="https://i.ibb.co/Fqn77x21/IMG-20250917-025151-929.jpg" alt="Nainaa photo 2">
+      <img src="https://i.ibb.co/8DVnhCvZ/Screenshot-20250423-164242-Instagram-1.png" alt="Nainaa photo 3">
+      <img src="https://i.ibb.co/3yGQfcRR/Screenshot-20250914-184217-Photos.png" alt="Nainaa photo 4">
+    </section>
+
+    <section class="note-wrap">
+      <div id="noteEditable" class="note-inner">
+        <div class="message-text">
+          <p>
+            Dearest Nainaa,
+            <br><br>
+            As the stars twinkle and the moon shines, I wanted to send you a message filled with all the warmth and joy you bring into my life. Your presence is a constant source of happiness, and every moment spent with you is a treasure. You have a unique way of making everything brighter, and your spirit is truly radiant.
+            <br><br>
+            Remember that you are cherished and appreciated more than words can say. May your birthday be as wonderful and beautiful as you are. Keep shining!
+          </p>
+          <p class="signature">
+            Love, <br>
+            Dushttt
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script>
+    const lyricsLines = [
+      "Khuda",
+      "Sajde mein yoon hi jhukta hoon",
+      "Tum pe hi aake rukta hoon",
+      "Kya yeh sabko hota hai?",
+      "Humko kya lena hai sabse",
+      "Tum se hi sab baatein ab se",
+      "Ban gaye ho tum meri dua",
+      "Khuda jaane ke main fida hoon",
+      "Khuda jaane main mit gaya",
+      "Khuda jaane yeh kyun hua hai",
+      "Ki ban gaye ho tum mere Khuda",
+      "(Ki ban gaye ho tum mere Khuda)"
+    ];
+    
+    // Precise timings for each lyric line in milliseconds.
+    const lyricsTimings = [
+      0,      // Khuda
+      3200,   // Sajde mein yoon hi jhukta hoon
+      7100,   // Tum pe hi aake rukta hoon
+      11200,  // Kya yeh sabko hota hai?
+      15100,  // Humko kya lena hai sabse
+      19000,  // Tum se hi sab baatein ab se
+      22900,  // Ban gaye ho tum meri dua
+      26600,  // Khuda jaane ke main fida hoon
+      30400,  // Khuda jaane main mit gaya
+      34500,  // Khuda jaane yeh kyun hua hai
+      38300,  // Ki ban gaye ho tum mere Khuda
+      42300   // (Ki ban gaye ho tum mere Khuda)
+    ];
+
+    const container = document.getElementById('lyricsContainer');
+    const player = document.getElementById('player');
+    const disc = document.getElementById('disc');
+    const playBtn = document.getElementById('playBtn');
+    const tempoInput = document.getElementById('tempo');
+    
+    lyricsLines.forEach((l, idx) => {
+      const el = document.createElement('div');
+      el.className = 'lyrics-line';
+      el.dataset.idx = idx;
+      el.textContent = l;
+      container.appendChild(el);
+    });
+
+    function updateLyrics() {
+      const currentTimeMs = player.currentTime * 1000;
+      const lines = container.querySelectorAll('.lyrics-line');
+      let lastShownIndex = -1;
+
+      for (let i = 0; i < lyricsTimings.length; i++) {
+        if (currentTimeMs >= lyricsTimings[i]) {
+          lastShownIndex = i;
+        } else {
+          break;
+        }
+      }
+
+      lines.forEach((line, index) => {
+        if (index <= lastShownIndex) {
+          line.classList.add('show');
+        } else {
+          line.classList.remove('show');
+        }
+      });
+      
+      const shown = container.querySelector('.lyrics-line.show:last-of-type');
+      if (shown) {
+          shown.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+
+      // Loop back to the beginning if the song is near the end
+      if (currentTimeMs > 43000) { // Slightly after the last line
+        player.currentTime = 0;
+        player.play();
+      }
+    }
+
+    function updateDisc(state) {
+      if (state === 'play') {
+        disc.classList.add('spin-on');
+        playBtn.textContent = 'Pause';
+      } else {
+        disc.classList.remove('spin-on');
+        playBtn.textContent = 'Play';
+      }
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (player.paused) {
+        player.play().catch(e => console.log("Autoplay prevented:", e));
+      } else {
+        player.pause();
+      }
+    });
+    
+    player.addEventListener('play', () => {
+      updateDisc('play');
+    });
+
+    player.addEventListener('pause', () => {
+      updateDisc('pause');
+    });
+
+    player.addEventListener('timeupdate', () => {
+      updateLyrics();
+    });
+
+    window.addEventListener('load', async () => {
+      try {
+        await player.play();
+        updateDisc('play');
+      } catch (e) {
+        updateDisc(player.paused ? 'pause' : 'play');
+        console.log("Autoplay failed, user interaction needed to play audio:", e);
+      }
+    });
+
+    disc.addEventListener('click', () => {
+      if (player.paused) {
+        player.play().catch(e => console.log("Autoplay prevented:", e));
+      } else {
+        player.pause();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        if (player.paused) {
+          player.play().catch(e => console.log("Autoplay prevented:", e));
+        } else {
+          player.pause();
+        }
+      }
+    });
+
+    const observer = new MutationObserver(() => {
+      const shown = container.querySelector('.lyrics-line.show:last-of-type');
+      if (shown) {
+        shown.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+    });
+    observer.observe(container, { subtree: true, attributes: true, attributeFilter: ['class'] });
+
+  </script>
+</body>
+</html>
